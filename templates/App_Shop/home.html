@@ -1,0 +1,616 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title_block %} Home {% endblock %}
+
+{% block css_block %}
+<style>
+
+.shop {
+  position: relative;
+  overflow: hidden;
+  margin: 15px 0px;
+}
+
+.shop .shop-img{
+  position: relative;
+  background-color: #E4E7ED;
+  z-index: -1;
+}
+
+.shop .shop-img>img {
+  width: 100%;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.shop:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0px;
+  width: 60%;
+  background: #D10024;
+  opacity: 0.9;
+  -webkit-transform: skewX(-45deg);
+  -ms-transform: skewX(-45deg);
+  transform: skewX(-45deg);
+}
+.shop:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1px;
+  width: 100%;
+  background: #D10024;
+  opacity: 0.9;
+  -webkit-transform: skewX(-45deg) translateX(-100%);
+  -ms-transform: skewX(-45deg) translateX(-100%);
+  transform: skewX(-45deg) translateX(-100%);
+}
+
+.shop:hover .shop-img>img {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.shop .shop-body {
+  position: absolute;
+  top: 0;
+  width: 75%;
+  padding: 30px;
+  z-index: 10;
+}
+
+.shop .shop-body h3 {
+  color: #FFF;
+}
+
+.shop .shop-body .cta-btn {
+  color: #FFF;
+  text-transform: uppercase;
+}
+
+
+
+<!--..................-->
+<!--new product-->
+<!--..................-->
+
+
+   .product{
+       height: 450px;
+       margin-right: 4px;
+   }
+   .product:first-child{
+       margin-left: -12px;
+   }
+   .card-product{
+       border: none;
+       margin-bottom: 23px;
+   }
+   .card-product:hover .product{
+       border: 2px solid #D10024;
+<!--       border-top:2px solid #D10024;-->
+<!--       border-left:2px solid #D10024;-->
+<!--       border-right:2px solid #D10024;-->
+   }
+   .text-center{
+       text-align:center;
+   }
+   .p-cat{
+       color: #C9CED8;
+       font-size: 12px;
+   }
+   .p-name{
+       color: #1E1F29;
+   }
+   .new-price{
+      color: #D10024;
+      font-size: 20px;
+      font-weight: bold;
+   }
+   .old-price{
+       color: #C9CED8;
+   }
+
+   .logo-list .lg{
+       display: inline-block;
+       width:35px;
+       height:35px;
+       line-height:35px;
+       text-align: center;
+       background-color:white;
+       border-radius: 50%;
+   }
+   .lg a{
+       color: black;
+   }
+   .lg a:hover{
+       color: #D10024;
+   }
+
+   .lg:hover {
+       width:35px;
+       height:35px;
+       line-height:35px;
+       text-align: center;
+       background-color: #E4E7ED;
+       border-radius: 50%;
+       color: #EF233C;
+   }
+
+   .card-hov{
+      background-color: #1E1F29;
+      margin-top: -30px;
+      margin-left: -9px;
+      height:70px;
+      border-radius: 0;
+      width: 249px;
+      transform: translateY(0%);
+      transition: 0.2s all;
+      z-index: 2;
+      opacity: 0;
+
+   }
+
+   .card-product:hover .card-hov{
+      transform: translateY(40%);
+      opacity: 1;
+   }
+
+
+   .btn-bf {
+       margin: auto;
+       height: 35px;
+       width:150px;
+       border-radius: 100px;
+       background-color: #D10024;
+       color: #FFFFFF;
+       font-weight: bold;
+   }
+
+   .btn-bf:hover {
+       border-radius: 100px;
+       background-color: #FFFFFF;
+       color: #D10024;
+   }
+   .btn-bf>i {
+       color: #D10024;
+       opacity:0;
+       visibility: hidden;
+   }
+
+   .btn-bf:hover>i {
+       opacity:1;
+       visibility: visible;
+   }
+
+   .sec-head {
+      margin-top: 50px;
+      color: #2B2D42;
+      font-weight: bold;
+      font-size: 30px;
+   }
+
+
+
+.card-single{
+     margin-top: 18px;
+}
+
+
+.top-sec2-head{
+    position: relative;
+    margin: 10px;
+    text-decoration: upper;
+    color: #2B2D42;
+    font-size: 17px;
+    font-weight: bold;
+}
+.arrow-sign{
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+
+.ul-li li{
+   display: inline-block;
+   font-size: 10px;
+}
+.prev1,.next1,
+.prev2,.next2,
+.prev3,.next3{
+   height: 18px;
+   width: 18px;
+   line-height:18px;
+   border: 1.3px solid #E6E9ED;
+   border-radius: 50%;
+   text-align: center;
+}
+
+.prev1:hover,.next1:hover,
+.prev2:hover,.next2:hover,
+.prev3:hover,.next3:hover{
+   height: 18px;
+   width: 18px;
+   line-height:18px;
+    color: #FFFFFF;
+   border: 1px solid #D10024;
+   border-radius: 50%;
+   text-align: center;
+   background-color: #D10024;
+}
+
+.product-top-sub{
+    margin-bottom: 30px;
+}
+
+.product-category{
+     margin-left: 80px;
+     margin-top: -63px;
+     margin-bottom: 0px;
+     color: #8D99AE;
+     font-size: 13px;
+}
+
+.product-name{
+   margin-top: -10px;
+}
+
+.product-name>a{
+    text-decoration:none;
+    margin-left: 80px;
+    color: #2B2D42;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.product-name>a:hover{
+    color: #D10024;
+}
+.product-price{
+    margin-left: 80px;
+    margin-top: -5px;
+    color: #D10024;
+    font-size: 16px;
+    font-weight: bold;
+}
+.product-old-price{
+    color: #8D99AE;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+
+
+
+
+<!-- ........................................ -->
+   hr{
+       width:200px;
+   }
+   li{
+      list-style: none;
+   }
+
+
+</style>
+
+{% endblock %}
+
+
+{% block body_block %}
+
+<h1>Homepage</h1>
+<div class="section1">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-4 col-xs-6">
+               <div class="shop">
+                  <div class="shop-img">
+<!--                     <img src="{% static 'img/shop01.png' %}" alt="">-->
+                     <img src="media/static_img/product08.png" alt="">
+                  </div>
+                  <div class="shop-body">
+								<h3>Laptop<br>Collection</h3>
+								<a href="#" class="cta-btn">Shop now </a>
+                  </div>
+               </div>
+         </div>
+         <div class="col-md-4 col-xs-6">
+               <div class="shop">
+                  <div class="shop-img">
+                     <img src="media/static_img/product02.png" alt="">
+                  </div>
+                   <div class="shop-body">
+                       <h3>Accessories<br>Collection</h3>
+                       <a href="#" class="cta-btn">Shop now </a>
+                   </div>
+               </div>
+         </div>
+         <div class="col-md-4 col-xs-6">
+               <div class="shop">
+                  <div class="shop-img">
+                     <img src="media/static_img/product09.png" alt="">
+                  </div>
+                   <div class="shop-body">
+                       <h3>Cameras<br>Collection</h3>
+                       <a href="#" class="cta-btn">Shop now </a>
+                   </div>
+
+               </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!--NEW PRODUCTS..............................................-->
+
+<p class="sec-head">NEW PRODUCTS</p>
+
+
+<div class="container-fluid">
+   <div class="row slider">
+   {% for product in new_product %}
+<!--   <div class="col-md-6 col-lg-3 col-sm-12 ">-->
+      <div class="col-md-12">
+      <div class="card card-product">
+
+      <div class="product">
+         <div class="product-img">
+            <img src="{{ product.mainimage.url }}" style="width:250px; height:300px;" alt="">
+         </div>
+         <div class="p-cat text-center">
+            <span>{{product.category}}</span>
+         </div>
+         <div class="p-name text-center">
+            <span>{{product.name}}</span>
+         </div>
+         <div class="p-price text-center">
+            <p><span class="new-price">&#2547;{{product.price|floatformat:2}}</span> &nbsp; <del class="old-price">{{product.old_price|floatformat:2}}</del>
+            </p>
+         </div>
+         <hr>
+         <div class="logo-list text-center">
+            <div class="lg"><a href="#"><i class="ion-ios-heart-outline"></i></a></div>
+            <div class="lg"><a href="#"><i class="ion-arrow-swap"></i></a></div>
+            <div class="lg"><a href="#"><i class="ion-eye"></i></a></div>
+         </div>
+      </div>
+         <div class="card card-hov">
+            <a href="#"  class="btn btn-bf"><i class="ion-ios-cart"></i>&nbsp; ADD TO CART</a>
+         
+         </div>
+
+      </div>
+      </div>
+
+   {% endfor %}
+
+   </div>
+</div>
+
+
+<!--TOP SELLING..............................................-->
+
+<p class="sec-head">TOP SELLING</p>
+
+
+<div class="container-fluid">
+   <div class="row slider">
+   {% for product in top_product %}
+<!--   <div class="col-md-6 col-lg-3 col-sm-12 ">-->
+      <div class="col-md-12">
+      <div class="card card-product">
+
+      <div class="product">
+         <div class="product-img">
+            <img src="{{ product.mainimage.url }}" style="width:250px; height:300px;" alt="">
+         </div>
+         <div class="p-cat text-center">
+            <span>{{product.category}}</span>
+         </div>
+         <div class="p-name text-center">
+            <span>{{product.name}}</span>
+         </div>
+         <div class="p-price text-center">
+            <p><span class="new-price">&#2547;{{product.price|floatformat:2}}</span> &nbsp; <del class="old-price">{{product.old_price|floatformat:2}}</del>
+            </p>
+         </div>
+         <hr>
+         <div class="logo-list text-center">
+            <div class="lg"><a href="#"><i class="ion-ios-heart-outline"></i></a></div>
+            <div class="lg"><a href="#"><i class="ion-arrow-swap"></i></a></div>
+            <div class="lg"><a href="#"><i class="ion-eye"></i></a></div>
+         </div>
+      </div>
+         <div class="card card-hov">
+            <a href="#"  class="btn btn-bf"><i class="ion-ios-cart"></i>&nbsp; ADD TO CART</a>
+
+         </div>
+
+      </div>
+      </div>
+   {% endfor %}
+<!--   </div>-->
+<!--    <div class="arrow-sign-top">-->
+<!--        <ul class="ul-li">-->
+<!--            <li class="prev1"><i class="ion-chevron-right"></i></li>-->
+<!--            <li class="next1"><i class="ion-chevron-left"></i></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+</div>
+
+
+<!--TOP SELLING SUB-SECTION..............................................-->
+<div class="container">
+    <div class="row">
+        <div class="card-single col-md-4 col-xs-6">
+            <p class="top-sec2-head">TOP SELLING</p>
+            <div class="row slider-top-sell-sub1">
+                <div class="col-md-6">
+                    {% for p in top1 %}
+                    <div class="product-top-sub" >
+                         <div class="product-img">
+                             <img src="{{ p.mainimage.url }}" style="width:65px; height:65px;" alt="">
+                         </div>
+                        <div class="product-body">
+                            <p class="product-category">
+                                {{p.category}}
+                            </p>
+                            <h3 class="product-name">
+                                <a href="#"> {{p.name}} </a>
+                            </h3>
+                            <h4 class="product-price">
+                                &#2547;{{p.price|floatformat:2}} <del class="product-old-price">&#2547;{{p.old_price|floatformat:2}}</del>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    {% for p in top2 %}
+                    <div class="product-top-sub" >
+                         <div class="product-img">
+                             <img src="{{ p.mainimage.url }}" style="width:65px; height:65px;" alt="">
+                         </div>
+                        <div class="product-body">
+                            <p class="product-category">
+                                {{p.category}}
+                            </p>
+                            <h3 class="product-name">
+                                <a href="#"> {{p.name}} </a>
+                            </h3>
+                            <h4 class="product-price">
+                                &#2547;{{p.price|floatformat:2}} <del class="product-old-price">&#2547;{{p.old_price|floatformat:2}}</del>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="arrow-sign">
+                <ul class="ul-li">
+                    <li class="prev1"><i class="ion-chevron-right"></i></li>
+                    <li class="next1"><i class="ion-chevron-left"></i></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-single col-md-4 col-xs-6">
+            <p class="top-sec2-head">TOP SELLING</p>
+            <div class="row slider-top-sell-sub2">
+                <div class="col-md-6">
+                    {% for p in top3 %}
+                    <div class="product-top-sub" >
+                         <div class="product-img">
+                             <img src="{{ p.mainimage.url }}" style="width:65px; height:65px;" alt="">
+                         </div>
+                        <div class="product-body">
+                            <p class="product-category">
+                                {{p.category}}
+                            </p>
+                            <h3 class="product-name">
+                                <a href="#"> {{p.name}} </a>
+                            </h3>
+                            <h4 class="product-price">
+                                &#2547;{{p.price|floatformat:2}} <del class="product-old-price">&#2547;{{p.old_price|floatformat:2}}</del>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    {% for p in top4 %}
+                    <div class="product-top-sub" >
+                         <div class="product-img">
+                             <img src="{{ p.mainimage.url }}" style="width:65px; height:65px;" alt="">
+                         </div>
+                        <div class="product-body">
+                            <p class="product-category">
+                                {{p.category}}
+                            </p>
+                            <h3 class="product-name">
+                                <a href="#"> {{p.name}} </a>
+                            </h3>
+                            <h4 class="product-price">
+                                &#2547;{{p.price|floatformat:2}} <del class="product-old-price">&#2547;{{p.old_price|floatformat:2}}</del>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="arrow-sign">
+                <ul class="ul-li">
+                    <li class="prev2"><i class="ion-chevron-right"></i></li>
+                    <li class="next2"><i class="ion-chevron-left"></i></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="card-single col-md-4 col-xs-6">
+            <p class="top-sec2-head">TOP SELLING</p>
+            <div class="row slider-top-sell-sub3">
+                <div class="col-md-6">
+                    {% for p in top4 %}
+                    <div class="product-top-sub" >
+                         <div class="product-img">
+                             <img src="{{ p.mainimage.url }}" style="width:65px; height:65px;" alt="">
+                         </div>
+                        <div class="product-body">
+                            <p class="product-category">
+                                {{p.category}}
+                            </p>
+                            <h3 class="product-name">
+                                <a href="#"> {{p.name}} </a>
+                            </h3>
+                            <h4 class="product-price">
+                                &#2547;{{p.price|floatformat:2}} <del class="product-old-price">&#2547;{{p.old_price|floatformat:2}}</del>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    {% for p in top2 %}
+                    <div class="product-top-sub" >
+                         <div class="product-img">
+                             <img src="{{ p.mainimage.url }}" style="width:65px; height:65px;" alt="">
+                         </div>
+                        <div class="product-body">
+                            <p class="product-category">
+                                {{p.category}}
+                            </p>
+                            <h3 class="product-name">
+                                <a href="#"> {{p.name}} </a>
+                            </h3>
+                            <h4 class="product-price">
+                                &#2547;{{p.price|floatformat:2}} <del class="product-old-price">&#2547;{{p.old_price|floatformat:2}}</del>
+                            </h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="arrow-sign">
+                <ul class="ul-li">
+                    <li class="prev3"><i class="ion-chevron-right"></i></li>
+                    <li class="next3"><i class="ion-chevron-left"></i></li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

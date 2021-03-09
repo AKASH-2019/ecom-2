@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+      <!-- icon https://ionicons.com/v2/ -->
+       <link rel="stylesheet"  href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!--      slick link-> https://cdnjs.com/libraries/slick-carousel/1.6.0-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" integrity="sha512-L/EyzxvZCddd652hKB4w2gEaZgCZSOaH0Ia6JoEGysTu27VnWvej5ipuBnru/iDhPWMO0AvwiVd0HHVUHWeDRA==" crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" integrity="sha512-0OCvzZyRsIJ9Rg7O1S+Wf9ucukmVhyOg3h5eBG05aeH4NjG78fCEaEX3ofvndmukzENiX24fK5X/jPr6Y8yIdg==" crossorigin="anonymous" />
+
+
+      <title>{% block title_block %}  {% endblock %}</title>
+
+      {% block css_block %}
+      {% endblock %}
+
+  </head>
+
+  <body>
+  {% include 'navbar.html' %}
+     <div class="container" style="padding-top:25px">
+         {% block body_block %} {% endblock %}
+     </div>
+
+
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--      jquary cndn for slick  link-> https://www.w3schools.com/jquery/jquery_get_started.asp    -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--      link -> https://cdnjs.com/libraries/slick-carousel/1.6.0-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js" integrity="sha512-An4a3FEMyR5BbO9CRQQqgsBscxjM7uNNmccUSESNVtWn53EWx5B9oO7RVnPvPG6EcYcYPp0Gv3i/QQ4KUzB5WA==" crossorigin="anonymous"></script>
+
+<!--     top sell-->
+     <script type="text/javascript">
+          $('.slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      dots: true
+                    }
+                  },
+                 {
+                   breakpoint: 600,
+                   settings: {
+                     slidesToShow: 2,
+                     slidesToScroll: 2
+                   }
+                 },
+                 {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                 }
+<!--    // You can unslick at a given breakpoint now by adding:-->
+<!--    // settings: "unslick"-->
+<!--    // instead of a settings object-->
+               ]
+         });
+      </script>
+<!--  top sell sub-section1-->
+    <script type="text/javascript">
+          $('.slider-top-sell-sub1').slick({
+<!--                dots: true,-->
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: $('.prev1'),
+                nextArrow: $('.next1'),
+                autoplay: true,
+                autoplaySpeed: 2000,
+
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      dots: true
+                    }
+                  },
+                 {
+                   breakpoint: 600,
+                   settings: {
+                     slidesToShow: 2,
+                     slidesToScroll: 2
+                   }
+                 },
+                 {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                 }
+
+               ]
+         });
+      </script>
+<!--  top sell sub-section2-->
+    <script type="text/javascript">
+          $('.slider-top-sell-sub2').slick({
+<!--                dots: true,-->
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: $('.prev2'),
+                nextArrow: $('.next2'),
+                autoplay: true,
+                autoplaySpeed: 2010,
+
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      dots: true
+                    }
+                  },
+                 {
+                   breakpoint: 600,
+                   settings: {
+                     slidesToShow: 2,
+                     slidesToScroll: 2
+                   }
+                 },
+                 {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                 }
+
+               ]
+         });
+      </script>
+  <!--  top sell sub-section3-->
+    <script type="text/javascript">
+          $('.slider-top-sell-sub3').slick({
+<!--                dots: true,-->
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                prevArrow: $('.prev3'),
+                nextArrow: $('.next3'),
+                autoplay: true,
+                autoplaySpeed: 2000,
+
+                responsive: [
+                  {
+                    breakpoint: 1024,
+                    settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      dots: true
+                    }
+                  },
+                 {
+                   breakpoint: 600,
+                   settings: {
+                     slidesToShow: 2,
+                     slidesToScroll: 2
+                   }
+                 },
+                 {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                 }
+
+               ]
+         });
+      </script>
+
+
+
+  </body>
+</html>
