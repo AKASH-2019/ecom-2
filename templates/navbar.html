@@ -1,4 +1,4 @@
-
+{% load cart_tag %}
 
        <style>
        ul, ol {
@@ -134,13 +134,7 @@
        .dropdown-cart>a>.qty{
            top: 5px;
        }
-       .toggle-menu{
-           position: relative;
-       }
 
-       .menu-drawer{
-
-       }
 
 
        </style>
@@ -204,14 +198,16 @@
                                  </div>
                                  <div>
                                       <div class="dropdown-cart">
-                                           <a href="#" class="toggle-menu">
+                                           <a href="{% url 'App_Order:cart' %}" class="toggle-menu">
                                                 <i class="ion-ios-cart"></i>
                                                 <br>
                                                 <span>Your Cart</span>
-                                                <div class="qty">3</div>
+                                               {% if request.user.is_authenticated %}
+                                                <div class="qty">{{request.user | cart_total}}</div>
+                                               {% endif %}
                                            </a>
                                           <div class="menu-drawer">
-                                              ddddd
+
 <!--                                              <ul>-->
 <!--                                                 <li><a href="#">Home</a></li>-->
 <!--                                                 <li><a href="#">About</a></li>-->

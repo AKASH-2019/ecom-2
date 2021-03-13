@@ -72,7 +72,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username + "'s Profile"
-    def is_full_filled(self):
+    def is_fully_filled(self):
         fields_names = [f.name for f in self._meta.get_fields()]
 
         for field_name in fields_names:
