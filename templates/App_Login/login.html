@@ -1,14 +1,43 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title_block %} login {% endblock %}
+{% block title_block %} <p>login</p> {% endblock %}
+
+{% block css_block %}
+<style>
+    .cart-full{
+       background-color: #E8E8E8;
+    }
+    .log-in{
+       background-color: #F0F0F0;
+       width:500px;
+       border: 1px solid #ccc;
+       padding: 50px;
+    }
+    .sign-up{
+       background-color: #F0F0F0;
+       width: 500px;
+       border: 1px solid #ccc;
+       padding: 15px 50px 0px 50px ;
+    }
+</style>
+
+{% endblock %}
+
+
 
 {% block body_block %}
-<h2>Login:</h2>
-<form method="POST">
-{{form|crispy}}
-{% csrf_token %}
-<button type="submit" class="btn btn-primary btn-sm">Login</button>
-</form>
+<center class="cart-full">
+    <div class="log-in">
+        <h2>Login:</h2>
+        <form method="POST">
+            {{ form|crispy }}
+            {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-sm">Login</button>
+        </form>
+    </div>
 <br>
-<p>Doesn't have an account? <a href="{% url 'App_Login:signup' %}">Create New Account</a></p>
+    <div class="sign-up">
+        <p>Doesn't have an account? <a href="{% url 'App_Login:signup' %}">Create New Account</a></p>
+    </div>
+</center>
 {% endblock %}
